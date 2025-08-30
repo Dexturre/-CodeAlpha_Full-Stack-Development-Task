@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}E-commerce Store{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'store/styles.css' %}" />
+    <script src="{% static 'store/scripts.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'product_list' %}">E-commerce Store</a></h1>
+        <nav>
+            <a href="{% url 'cart' %}">Cart</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 E-commerce Store</p>
+    </footer>
+</body>
+</html>

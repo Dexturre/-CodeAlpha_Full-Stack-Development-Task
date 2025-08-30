@@ -1,0 +1,15 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Order Confirmation{% endblock %}
+
+{% block content %}
+<div class="order-confirmation">
+    <h2>Order Confirmation</h2>
+    <p>Thank you for your order!</p>
+    <p>Your order has been placed successfully.</p>
+    <p>Order Total: ${{ order.total_price }}</p>
+    <p>Shipping Address: {{ order.shipping_address }}</p>
+    <p>Order Status: {{ order.get_status_display }}</p>
+    <a href="{% url 'product_list' %}" class="continue-shopping">Continue Shopping</a>
+</div>
+{% endblock %}

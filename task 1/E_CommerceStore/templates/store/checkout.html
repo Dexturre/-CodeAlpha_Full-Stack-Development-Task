@@ -1,0 +1,42 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<h2>Checkout</h2>
+{% if cart_items %}
+<table class="checkout-table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.product.price }}</td>
+            <td>${{ item.get_total_price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p class="checkout-total">Total: ${{ total_price }}</p>
+
+<form method="post" class="checkout-form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="shipping_address">Shipping Address:</label>
+        <textarea id="shipping_address" name="shipping_address" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="place-order-button">Place Order</button>
+</form>
+{% else %}
+<p>Your cart is empty.</p>
+<a href="{% url 'product_list' %}">Continue Shopping</a>
+{% endif %}
+{% endblock %}
